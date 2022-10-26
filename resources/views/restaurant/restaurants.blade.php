@@ -10,8 +10,5 @@
 			<div>
                 Restaurant 1
             </div>
-			<div>
-                Restaurant 2
-            </div>
 		</div>
 @endsection
