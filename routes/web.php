@@ -20,3 +20,5 @@ Route::get('/', function () {
 
 //Routes to pages
 Route::get('/restaurants',[RestaurantsController::class,'listRestaurants'])->name('restaurants');
+Route::get('/add-restaurant',[RestaurantsController::class,'addRestaurant'])->name('addRestaurant');
+Route::post('/save-restaurant',[RestaurantsController::class,'saveRestaurant'])->name('saveRestaurant');

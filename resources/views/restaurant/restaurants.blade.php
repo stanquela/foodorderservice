@@ -11,4 +11,5 @@
                 Restaurant 1
             </div>
 		</div>
+
 @endsection
