@@ -10,7 +10,8 @@ class RestaurantsController extends Controller
 {
 	//Listing all restaurants. They should be displayed on a main page.
     public function listRestaurants(){
-        return view('restaurant/restaurants');
+		$restaurant['data'] = Restaurant::all();
+        return view('restaurant/restaurants', compact('restaurant'));
     }
 
 	//Add a restaurant to the DB. ADMIN ONLY.
@@ -42,16 +43,48 @@ class RestaurantsController extends Controller
 	}
 
 	//Display a single restaurant page.
-	public function showRestaurant(){
-		//
+	public function showRestaurant($id){
+		$data = Restaurant::find($id);
+		
+		return view('restaurant/single_restaurant')->with('data', $data);
 	}
 
 	//Edit data of a restaurant in DB. ADMIN ONLY.
-	public function editRestaurant(){
-		//
+	public function editRestaurant($id){
+		$data = Restaurant::find($id);
+
+		return view('restaurant/edit_restaurant')->with('data', $data);
 	}
+
+	//Save edited data of a restaurant in DB. ADMIN ONLY.
+	public function saveEditRestaurant($id, Request $request){
+
+		$name = $request['name'];
+		$description = $request['description'];
+		$address = $request['address'];
+		$email = $request['email'];
+		$phone = $request['phone'];
+
+		$restaurant = Restaurant::find($id);
+
+		$restaurant->name = $name;
+		$restaurant->description = $description;
+		$restaurant->address = $address;
+		$restaurant->email = $email;
+		$restaurant->phone = $phone;
+
+		$restaurant->save();
+		
+		Session::flash("message", "Congrats, successfully edited a restaurant!");
+		return redirect()->back();
+	}
+
 	//Delete a restaurant from the DB. ADMIN ONLY.
-	public function deleteRestaurant(){
-		//
+	public function deleteRestaurant($id){
+		$data = Restaurant::find($id);
+		$data->delete();
+
+		Session::flash('message', 'You just deleted a restaurant from the DB!');
+		return redirect()->route('restaurants');
 	}
 }

@@ -22,3 +22,7 @@ Route::get('/', function () {
 Route::get('/restaurants',[RestaurantsController::class,'listRestaurants'])->name('restaurants');
 Route::get('/add-restaurant',[RestaurantsController::class,'addRestaurant'])->name('addRestaurant');
 Route::post('/save-restaurant',[RestaurantsController::class,'saveRestaurant'])->name('saveRestaurant');
+Route::get('/show-restaurant/{id}', [RestaurantsController::class, 'showRestaurant'])->name('showRestaurant');
+Route::get('/edit-restaurant/{id}', [RestaurantsController::class, 'editRestaurant'])->name('editRestaurant');
+Route::post('/save-edit-restaurant/{id}', [RestaurantsController::class, 'saveEditRestaurant'])->name('saveEditRestaurant');
+Route::delete('/delete-restaurant/{id}', [RestaurantsController::class, 'deleteRestaurant'])->name('deleteRestaurant');
