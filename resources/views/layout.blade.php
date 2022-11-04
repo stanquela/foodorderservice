@@ -40,7 +40,13 @@
 			  <li class="nav-item active">
 				<a class="nav-link" href="{{ route('addRestaurant') }}">Add restaurant</a>
 			  </li>
-
+              <li class="nav-item active">
+				<a class="nav-link" href="{{ route('meals') }}">Meals</a>
+			  </li>
+			<!-- ADD MEAL should only be visible to ADMIN/RESTAURANT MANAGER-->
+			  <li class="nav-item active">
+				<a class="nav-link" href="{{ route('addMeal') }}">Add meal</a>
+			  </li>
 			  <li class="nav-item">
 				<a class="nav-link" href="#">About</a>
 			  </li>
