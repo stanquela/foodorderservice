@@ -45,8 +45,8 @@ class RestaurantsController extends Controller
 	//Display a single restaurant page.
 	public function showRestaurant($id){
 		$data = Restaurant::find($id);
-		
-		return view('restaurant/single_restaurant')->with('data', $data);
+		$meals = Restaurant::find($id)->meals;
+		return view('restaurant/single_restaurant')->with('data', $data)->with('meals', $meals);
 	}
 
 	//Edit data of a restaurant in DB. ADMIN ONLY.

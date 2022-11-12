@@ -26,5 +26,11 @@
                 </div>               
             </form>
 		</div>
-
+        <div>
+            <h1>This restaurant can present you:</h1>
+            @foreach($meals as $meal)
+                <h2><a href={{ route('showMeal', $meal['id']) }}> {{ $meal['name'] }} </a></h2>
+                <p> {{ $meal['description'] }} </p>
+            @endforeach
+        </div>
 @endsection

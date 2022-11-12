@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Meal extends Model
 {
     use HasFactory;
+    
+    //Relationship method for Restaurant model
+    public function restaurants()
+    {
+        return $this->belongsTo(Restaurant::class, 'restaurant_id');    
+    }
 }

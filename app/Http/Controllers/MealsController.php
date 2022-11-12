@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Meal;
+use App\Models\Restaurant;
 use Session;
 
 class MealsController extends Controller
@@ -11,12 +12,14 @@ class MealsController extends Controller
 	//Listing all meals. They should be displayed on a single-restaurant page. For now, they will be all displayed on a single page, not sorted by restaurants. To be edited!!!
     public function listMeals(){
 		$meal['data'] = Meal::all();
-        return view('meal/meals', compact('meal'));
+        $restaurants = Restaurant::all();
+        return view('meal/meals', compact('meal'))->with('restaurants', $restaurants);
     }
 
 	//Add a meal to the DB. ADMIN ONLY.
 	public function addMeal(){
-		return view('meal/add_meal');
+        $restaurants = Restaurant::all();	
+        return view('meal/add_meal')->with('restaurants', $restaurants);
 	}
 
 	//Save added meal to the DB. ADMIN ONLY. (For now, restaurant manager should also be able to add meal)
@@ -41,16 +44,16 @@ class MealsController extends Controller
 	//Display a single meal page.
 	public function showMeal($id){
 		$data = Meal::find($id);
-		
-		return view('meal/single_meal')->with('data', $data);
+        $restaurant = $data->restaurants->name;
+		return view('meal/single_meal')->with('data', $data)->with('restaurant', $restaurant);
 	}
 
 	
 	//Edit data of a meal in DB. ADMIN ONLY.
 	public function editMeal($id){
 		$data = Meal::find($id);
-
-		return view('meal/edit_meal')->with('data', $data);
+        $restaurants = Restaurant::all();
+		return view('meal/edit_meal')->with('data', $data)->with('restaurants', $restaurants);
 	}
 
 	//Save edited data of a meal in DB. ADMIN ONLY.

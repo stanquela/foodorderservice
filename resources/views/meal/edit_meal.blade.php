@@ -16,7 +16,15 @@
 		@csrf
 		<div class="container"> 
             <p>Restaurant:</p>
-			<input type="text" id="restaurant_id" name="restaurant_id" value="{{ $data['restaurant_id'] }}">			
+			<!--<input type="text" id="restaurant_id" name="restaurant_id" value="{{ $data['restaurant_id'] }}">-->
+            <select class="form-control m-bot15" name="restaurant_id">
+                @if ($restaurants->count())
+                    @foreach($restaurants as $restaurant)
+                    <option @if($restaurant->id==$data->restaurant_id) selected @endif value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>    
+                    @endforeach
+                @endif
+
+            </select>			
             <p>Meal name:</p>
 			<input type="text" id="name" name="name" value="{{ $data['name'] }}">
 			<p>Meal description:</p>

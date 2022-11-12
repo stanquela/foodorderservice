@@ -4,7 +4,7 @@
 
 @section('content')		
 		<h1>
-			You picked meal: {{ $data['name'] }}, from restaurant: {{ $data['restaurant_id'] }}!
+			You picked meal: {{ $data['name'] }}, from restaurant: <a href="{{ route('showRestaurant', $data->restaurants->id) }}">{{ $restaurant}}</a>!
 		</h1>
 		<div>
 			

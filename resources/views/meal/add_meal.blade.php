@@ -15,8 +15,17 @@
 	<form action="{{ route('saveMeal') }}" method="POST" id="addMeal">
 		@csrf
 		<div class="container"> 
-			<p>Restaurant id:</p>
-            <input type="text" id ="restaurant_id" name="restaurant_id">
+			<!--<p>Restaurant id:</p>
+            <input type="text" id ="restaurant_id" name="restaurant_id">-->
+            <select class="form-control m-bot15" name="restaurant_id">
+                @if ($restaurants->count())
+                    @foreach($restaurants as $restaurant)
+                    <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>    
+                    @endforeach
+                @endif
+
+            </select>
+
             <p>Meal name:</p>
 			<input type="text" id="name" name="name">
 			<p>Meal description:</p>
