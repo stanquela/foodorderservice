@@ -37,3 +37,22 @@ Route::get('/edit-meal/{id}', [MealsController::class, 'editMeal'])->name('editM
 Route::post('/save-edit-meal/{id}', [MealsController::class, 'saveEditMeal'])->name('saveEditMeal');
 Route::delete('/delete-meal/{id}', [MealsController::class, 'deleteMeal'])->name('deleteMeal');
 
+//Routes for orders
+Route::get('/orders',[OrdersController::class,'listOrders'])->name('orders');
+Route::get('/add-order',[OrdersController::class,'addOrder'])->name('addOrder');
+Route::post('/save-order',[OrdersController::class,'saveOrder'])->name('saveOrder');
+Route::get('/show-order/{id}', [OrdersController::class, 'showOrder'])->name('showOrder');
+Route::get('/edit-order/{id}', [OrdersController::class, 'editOrder'])->name('editOrder');
+Route::post('/save-edit-order/{id}', [OrdersController::class, 'saveEditOrder'])->name('saveEditOrder');
+Route::delete('/delete-order/{id}', [OrdersController::class, 'deleteOrder'])->name('deleteOrder');
+Route::post('/confirm-order/{id}', [OrdersController::class, 'confirmOrder'])->name('confirmOrder');
+Route::post('/archive-order/{id}', [OrdersController::class, 'archiveOrder'])->name('archiveOrder');
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
