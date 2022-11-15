@@ -20,9 +20,9 @@ class RestaurantsSeeder extends Seeder
         //Populate DB table restaurants with dummy data;
         for ($i=0; $i<10; $i++) {
           DB::table('restaurants')->insert([
-            'name' => Str::random(7),
+            'name' => 'Restaurant_'.$i,
             'description' => Str::random(20),
-            'email' => Str::random(10).'@mail.com',
+            'email' => 'restaurant_'.$i.'@mail.com',
             'address' => Str::random(10),
             'phone' => mt_rand(1000000,9999999),
           ]);

@@ -22,9 +22,10 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            //Custom data, for the app (User is in the app reffert to as a CUSTOMER if client and ADMIN if not)
-            $table->string('address');
-            $table->string('phone');
+            //Custom data, for the app (User is in the app has value 0 if client, value 1 if restaurant staff and value 2 if ADMIN)
+            $table->integer('role')->default('0');
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
         });
     }
 

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> FOO-dorder @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +21,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('welcome') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -31,7 +31,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                          <li class="nav-item active">
+				            <a class="nav-link" href="{{ route('restaurants') }}">Restaurants</a>
+			              </li>
+			            <!-- ADD RESTAURANT should only be visible to ADMIN -->
+			              <li class="nav-item active">
+				            <a class="nav-link" href="{{ route('addRestaurant') }}">Add restaurant</a>
+			              </li>
+                          <li class="nav-item active">
+				            <a class="nav-link" href="{{ route('meals') }}">Meals</a>
+			              </li>
+			            <!-- ADD MEAL should only be visible to ADMIN/RESTAURANT MANAGER-->
+			              <li class="nav-item active">
+				            <a class="nav-link" href="{{ route('addMeal') }}">Add meal</a>
+			              </li>
+			              <li class="nav-item">
+				            <a class="nav-link" href="{{ route('about') }}">About</a>
+			              </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
