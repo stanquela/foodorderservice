@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RestaurantsController; //Restaurants Controller
 use App\Http\Controllers\MealsController; //Meals Controller
+use App\Http\Controllers\CartController; //Shopping cart controller
+use App\Http\Controllers\OrdersController;  //Orders controller
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +59,11 @@ Route::prefix('staff')->middleware(['auth','is.staff'])->group(function(){
         Route::post('/save-edit-meal/{id}', [MealsController::class, 'saveEditMeal'])->name('saveEditMeal');
         Route::delete('/delete-meal/{id}', [MealsController::class, 'deleteMeal'])->name('deleteMeal');
     });
+
+//Routes for cart
+Route::get('/show-cart', [CartController::class,'showCart'])->name('showCart');
+Route::post('/add-to-cart/{id}', [CartController::class,'addToCart'])->name('addToCart');
+Route::post('/delete-from-cart/{$id}', [CartController::class,'deleteFromCart'])->name('deleteFromCart');
 
 //Routes for orders
 Route::get('/orders',[OrdersController::class,'listOrders'])->name('orders');

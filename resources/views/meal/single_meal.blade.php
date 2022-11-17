@@ -12,6 +12,13 @@
 		
 		<div>Description: {{ $data['description'] }}</div>
 		
+        <div>
+            <form action="{{ route('addToCart', $data->id) }}" method="POST" id="addToCart">
+                @csrf        
+                <input type="number" min="1" max="100" name="quantity">
+                <input class="btn btn-info" type="submit" value="Add to cart">
+            </form>
+        </div>
 
         <div>
 			<a id="edit_meal" class="btn btn-info" href="{{ route('editMeal', $data->id) }}">EDIT</a>
