@@ -15,10 +15,7 @@
 		</h1>
 		<div>
 			<ul>
-                @if($quantity && $meal)
-                    <p>You want to order {{$quantity}} of {{$meal['name']}}</p>
-                    
-                @endif
+
             </ul>
 		</div>
       

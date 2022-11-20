@@ -11,10 +11,8 @@ class CartController extends Controller
 {
     //List items from cart of a current session.
     public function showCart(Request $request){
-        $quantity = $request->session()->pull('quantity');
-        $meal = $request->session()->pull('meal');
-        
-        return view('cart/cart')->with('quantity', $quantity)->with('meal',$meal);
+       
+        return view('cart/cart');
     }    
 
     //Add chosen product to cart, with quantity.
@@ -22,12 +20,9 @@ class CartController extends Controller
         $meal = Meal::find($id);
         $quantity = $request['quantity'];
         
-        Session::flash("message", "Product added to your cart!");
-        Session::put([
-                        'meal' => $meal,
-                        'quantity' => $quantity,
-                    ]);
-        return redirect()->route('showCart'); 
+        Session::flash("message", "Product added to your cart! ($quantity portions of $meal->name)");
+
+        return redirect()->back(); 
     }
     
     //Delete product from cart.

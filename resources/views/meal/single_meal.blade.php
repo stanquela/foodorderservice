@@ -3,7 +3,12 @@
 @section('title', 'Meal')
 
 @section('content')		
-		<h1>
+        <div>
+		@if(Session::has('message'))
+			<p class="alert alert-info">{{ Session::get('message') }}</p>
+		@endif
+	</div>		
+        <h1>
 			You picked meal: {{ $data['name'] }}, from restaurant: <a href="{{ route('showRestaurant', $data->restaurants->id) }}">{{ $restaurant}}</a>!
 		</h1>
 		<div>
