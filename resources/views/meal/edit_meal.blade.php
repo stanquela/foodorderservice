@@ -29,6 +29,8 @@
 			<input type="text" id="name" name="name" value="{{ $data['name'] }}">
 			<p>Meal description:</p>
 			<textarea cols="30" rows="10" id="description" name="description">{{ $data["description"] }}</textarea>
+            <p>Meal price:</p>
+			<input type="number" id="price" name="price" value="{{ $data['price'] }}">
 			</br>
 			<p></p>
 			<button type="submit" id="submit" class="btn btn-success">SUBMIT</button>

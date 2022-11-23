@@ -15,8 +15,13 @@
 		</h1>
 		<div>
 			<ul>
-
+                User {{$user_id}}:
             </ul>
+            @foreach($meals as $meal)
+                <p>meal id {{$meal->meal_id}}</p>
+                <p>quantity( {{$meal->quantity}} )</p>
+            @endforeach
+
 		</div>
       
 		

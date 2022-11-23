@@ -28,8 +28,13 @@
 
             <p>Meal name:</p>
 			<input type="text" id="name" name="name">
+
 			<p>Meal description:</p>
 			<textarea cols="30" rows="10" id="description" name="description"></textarea>
+
+            <p>Meal price:</p>
+			<input type="number" id="price" name="price">
+
 			<p></p>
 			<button type="submit" id="submit" class="btn btn-success">SUBMIT</button>
 		</div>

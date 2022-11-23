@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Meal;
 use App\Models\Restaurant;
+use App\Models\Cart;
 use Session;
 
 class MealsController extends Controller

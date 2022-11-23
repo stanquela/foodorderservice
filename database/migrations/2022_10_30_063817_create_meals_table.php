@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('restaurant_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
             $table->string('description');
+            $table->integer('price');
         });
     }
 

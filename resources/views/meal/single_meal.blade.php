@@ -16,6 +16,7 @@
 		</div>
 		
 		<div>Description: {{ $data['description'] }}</div>
+        <div>Price: {{ $data['price'] }}</div>
 		
         <div>
             <form action="{{ route('addToCart', $data->id) }}" method="POST" id="addToCart">

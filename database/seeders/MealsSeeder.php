@@ -22,6 +22,7 @@ class MealsSeeder extends Seeder
             DB::table('meals')->insert([
                 'name' => Str::random(7),
                 'description' => Str::random(10),
+                'price' => mt_rand(10,50),
                 'restaurant_id' => mt_rand(1,10),
             ]);
         }

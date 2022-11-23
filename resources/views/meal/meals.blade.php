@@ -20,6 +20,7 @@
             <div>{{ $single->restaurants->name }} (ID of restaurant: {{ $single['restaurant_id'] }})</div>			
             <div>{{ $single['name'] }}</div>
 			<div>{{ $single['description'] }}</div>
+			<div>{{ $single['price'] }}</div>
 			<a href=" {{ route('showMeal', $single['id']) }} ">Read more...</a>
 		@endforeach
 		
