@@ -14,9 +14,17 @@ class CartController extends Controller
 {
     //List items from cart of a current session.
     public function showCart(){
-        $user_id = Auth::id();
-        $meals = DB::table('carts')->where('user_id', $user_id)->get();
-        return view('cart/cart')->with('user_id', $user_id)->with('meals', $meals);
+        $user_id = Auth::id(); //Get the id of logged user.        
+        $user_name = Auth::user()->name;
+        $user_cart = Cart::where('user_id', $user_id)->get();       
+        
+        $total_price = 0;
+        foreach($user_cart as $cart_item)
+        {
+            $total_price += $cart_item->meals->price * $cart_item->quantity;    
+        }
+        
+        return view('cart/cart')->with('user_id', $user_id)->with('user_cart', $user_cart)->with('total_price', $total_price)->with('user_name', $user_name);
     }    
 
     //Add chosen product to cart, with quantity.

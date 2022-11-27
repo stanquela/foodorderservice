@@ -14,4 +14,10 @@ class Meal extends Model
     {
         return $this->belongsTo(Restaurant::class, 'restaurant_id');    
     }
+
+    //Relationship method for Cart model
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);   
+    }
 }

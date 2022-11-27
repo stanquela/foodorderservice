@@ -22,6 +22,14 @@
 			<div>{{ $single['description'] }}</div>
 			<div>{{ $single['price'] }}</div>
 			<a href=" {{ route('showMeal', $single['id']) }} ">Read more...</a>
+            <div>
+                <form action="{{ route('addToCart', $single['id']) }}" method="POST" id="addToCart">
+                    @csrf        
+                    
+                    <p>Quantity: <input type="number" min="1" max="100" name="quantity"></p>
+                    <input class="btn btn-info" type="submit" value="Add to cart">
+                </form>
+            </div>
 		@endforeach
 		
 		

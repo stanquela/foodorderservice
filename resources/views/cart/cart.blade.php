@@ -15,15 +15,19 @@
 		</h1>
 		<div>
 			<ul>
-                User {{$user_id}}:
+                User {{$user_id}}: {{ $user_name }}
             </ul>
-            @foreach($meals as $meal)
-                <p>meal id {{$meal->meal_id}}</p>
-                <p>quantity( {{$meal->quantity}} )</p>
+            @foreach($user_cart as $cart_item)
+                <p>meal id {{ $cart_item->meal_id }} (Meal name: {{ $cart_item->meals->name }} (price: {{ $cart_item->meals->price }}), from restaurant {{ $cart_item->meals->restaurants->name }} )</p>
+                <p>quantity( x{{ $cart_item->quantity }} )</p>
+                <p>Cost of meals: {{$cart_item->quantity*$cart_item->meals->price}}</p>
+                
             @endforeach
 
 		</div>
-      
+        <div>
+           TOTAL PRICE: {{ $total_price }}
+        </div>
 		
 		
 @endsection

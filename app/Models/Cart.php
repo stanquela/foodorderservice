@@ -10,12 +10,14 @@ class Cart extends Model
     use HasFactory;
 
     //Relationship method with users.    
-    public function users(){
+    public function users()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
     
     //Relationship method with meals.    
-    public function meals(){
+    public function meals()
+    {
         return $this->belongsTo(Meal::class, 'meal_id');
     }
 }
