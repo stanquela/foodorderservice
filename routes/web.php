@@ -63,15 +63,16 @@ Route::prefix('staff')->middleware(['auth','is.staff'])->group(function(){
 //Routes for cart
 Route::get('/show-cart', [CartController::class,'showCart'])->name('showCart');
 Route::post('/add-to-cart/{id}', [CartController::class,'addToCart'])->name('addToCart');
-Route::post('/delete-from-cart/{$id}', [CartController::class,'deleteFromCart'])->name('deleteFromCart');
+Route::delete('/delete-from-cart/{id}', [CartController::class,'deleteFromCart'])->name('deleteFromCart');
 
 //Routes for orders
 Route::get('/orders',[OrdersController::class,'listOrders'])->name('orders');
-Route::get('/add-order',[OrdersController::class,'addOrder'])->name('addOrder');
+Route::post('/add-order',[OrdersController::class,'addOrder'])->name('addOrder');
 Route::post('/save-order',[OrdersController::class,'saveOrder'])->name('saveOrder');
 Route::get('/show-order/{id}', [OrdersController::class, 'showOrder'])->name('showOrder');
-Route::get('/edit-order/{id}', [OrdersController::class, 'editOrder'])->name('editOrder');
-Route::post('/save-edit-order/{id}', [OrdersController::class, 'saveEditOrder'])->name('saveEditOrder');
+/*Once the order is made, it can't be changed*/
+//Route::get('/edit-order/{id}', [OrdersController::class, 'editOrder'])->name('editOrder');
+//Route::post('/save-edit-order/{id}', [OrdersController::class, 'saveEditOrder'])->name('saveEditOrder');
 Route::delete('/delete-order/{id}', [OrdersController::class, 'deleteOrder'])->name('deleteOrder');
 Route::post('/confirm-order/{id}', [OrdersController::class, 'confirmOrder'])->name('confirmOrder');
 Route::post('/archive-order/{id}', [OrdersController::class, 'archiveOrder'])->name('archiveOrder');

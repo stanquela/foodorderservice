@@ -17,13 +17,13 @@ class MealsController extends Controller
         return view('meal/meals', compact('meal'))->with('restaurants', $restaurants);
     }
 
-	//Add a meal to the DB. ADMIN ONLY.
+	//Add a meal to the DB. STAFF/ADMIN ONLY.
 	public function addMeal(){
         $restaurants = Restaurant::all();	
         return view('meal/add_meal')->with('restaurants', $restaurants);
 	}
 
-	//Save added meal to the DB. ADMIN ONLY. (For now, restaurant manager should also be able to add meal)
+	//Save added meal to the DB. STAFF/ADMIN ONLY.
 	public function saveMeal(Request $request){
 
 		$restaurant_id = $request['restaurant_id'];
@@ -50,14 +50,14 @@ class MealsController extends Controller
 	}
 
 	
-	//Edit data of a meal in DB. ADMIN ONLY.
+	//Edit data of a meal in DB. STAFF/ADMIN ONLY.
 	public function editMeal($id){
 		$data = Meal::find($id);
         $restaurants = Restaurant::all();
 		return view('meal/edit_meal')->with('data', $data)->with('restaurants', $restaurants);
 	}
 
-	//Save edited data of a meal in DB. ADMIN ONLY.
+	//Save edited data of a meal in DB. STAFF/ADMIN ONLY.
 	public function saveEditMeal($id, Request $request){
 
 		$restaurant_id = $request['restaurant_id'];
@@ -76,7 +76,7 @@ class MealsController extends Controller
 		return redirect()->back();
 	}
 
-	//Delete a restaurant from the DB. ADMIN ONLY.
+	//Delete a meal from the DB. STAFF/ADMIN ONLY.
 	public function deleteMeal($id){
 		$data = Meal::find($id);
 		$data->delete();

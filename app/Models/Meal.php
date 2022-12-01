@@ -20,4 +20,10 @@ class Meal extends Model
     {
         return $this->hasMany(Cart::class);   
     }
+
+    //Relationship method for OrderItem model
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);   
+    }
 }
