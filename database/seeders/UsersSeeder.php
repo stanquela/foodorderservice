@@ -26,6 +26,7 @@ class UsersSeeder extends Seeder
             'role' => '2',
             'address' => 'Admin address',
             'phone' => mt_rand(1000000,9999999),
+            'restaurant_id' => NULL,
           ]);
          DB::table('users')->insert([
             'name' => 'staff',
@@ -34,6 +35,7 @@ class UsersSeeder extends Seeder
             'role' => '1',
             'address' => 'Staff address',
             'phone' => mt_rand(1000000,9999999),
+            'restaurant_id' => '1',
           ]);
          DB::table('users')->insert([
             'name' => 'client',
@@ -42,6 +44,7 @@ class UsersSeeder extends Seeder
             'role' => '0',
             'address' => 'Client address',
             'phone' => mt_rand(1000000,9999999),
+            'restaurant_id' => NULL,
           ]);
     }
 }

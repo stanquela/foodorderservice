@@ -29,12 +29,14 @@ class MealsController extends Controller
 		$restaurant_id = $request['restaurant_id'];
 		$name = $request['name'];
 		$description = $request['description'];
+        $price = $request['price'];
 		
 		$meal = new Meal();
 
 		$meal->restaurant_id = $restaurant_id;
 		$meal->name = $name;
 		$meal->description = $description;
+        $meal->price = $price;
 
 		$meal->save();
 		
@@ -63,12 +65,14 @@ class MealsController extends Controller
 		$restaurant_id = $request['restaurant_id'];
 		$name = $request['name'];
 		$description = $request['description'];
+        $price = $request['price'];
 		
 		$meal = Meal::find($id);
 
 		$meal->restaurant_id = $restaurant_id;
 		$meal->name = $name;
 		$meal->description = $description;
+        $meal->price = $price;
 
 		$meal->save();
 		

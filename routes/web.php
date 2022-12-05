@@ -60,17 +60,29 @@ Route::prefix('staff')->middleware(['auth','is.staff'])->group(function(){
         Route::delete('/delete-meal/{id}', [MealsController::class, 'deleteMeal'])->name('deleteMeal');
     });
 
-//Routes for cart
-Route::get('/show-cart', [CartController::class,'showCart'])->name('showCart');
-Route::post('/add-to-cart/{id}', [CartController::class,'addToCart'])->name('addToCart');
-Route::delete('/delete-from-cart/{id}', [CartController::class,'deleteFromCart'])->name('deleteFromCart');
 
-//Routes for orders
-Route::get('/orders',[OrdersController::class,'listOrders'])->name('orders');
-Route::post('/add-order',[OrdersController::class,'addOrder'])->name('addOrder');
-Route::post('/save-order',[OrdersController::class,'saveOrder'])->name('saveOrder');
-Route::get('/show-order/{id}', [OrdersController::class, 'showOrder'])->name('showOrder');
-/*Once the order is made, it can't be changed*/
+
+/*CLIENT MIDDLEWARE (ADMIN IS ALSO ABLE TO ACCESS, STAFF CAN'T USE THE CART AND ORDERS, EXCEPT WHEN THEY RECEIVE THE ORDER.)*/
+Route::prefix('staff')->middleware(['auth', 'is.client'])->group(function(){
+        
+        //Routes for cart        
+        Route::get('/show-cart', [CartController::class,'showCart'])->name('showCart');
+        Route::post('/add-to-cart/{id}', [CartController::class,'addToCart'])->name('addToCart');
+        Route::delete('/delete-from-cart/{id}', [CartController::class,'deleteFromCart'])->name('deleteFromCart');
+
+
+    });
+
+
+//THESE ROUTES STILL NEED TO BE PROCESSED.
+
+        //Routes for orders - what should STAFF see??? To be revised
+        Route::get('/orders',[OrdersController::class,'listOrders'])->name('orders');
+        Route::post('/add-order',[OrdersController::class,'addOrder'])->name('addOrder');
+        Route::post('/save-order',[OrdersController::class,'saveOrder'])->name('saveOrder');
+        Route::get('/show-order/{id}', [OrdersController::class, 'showOrder'])->name('showOrder'); 
+
+/*Once the order is made, it can't be changed by client in the DB (for now)*/
 //Route::get('/edit-order/{id}', [OrdersController::class, 'editOrder'])->name('editOrder');
 //Route::post('/save-edit-order/{id}', [OrdersController::class, 'saveEditOrder'])->name('saveEditOrder');
 Route::delete('/delete-order/{id}', [OrdersController::class, 'deleteOrder'])->name('deleteOrder');

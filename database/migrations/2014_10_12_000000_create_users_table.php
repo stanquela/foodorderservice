@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('role')->default('0');
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
+            $table->foreignId('restaurant_id')->nullable();
         });
     }
 

@@ -42,4 +42,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //Relationship method for Restaurant model - in case user is part of the STAFF;
+    public function restaurants(){
+        $this->belongsTo(Restaurant::class, 'restaurant_id');    
+    }      
+        
+    //Relationship method for Order model;    
+    public function orders(){
+        $this->hasMany(Order::class);    
+    }
+
 }
