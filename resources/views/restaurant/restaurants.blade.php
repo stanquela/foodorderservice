@@ -16,11 +16,24 @@
 		<div>
 			
 		</div>
-		@foreach($restaurant['data'] as $single)
-			<div>{{ $single['name'] }}</div>
-			<div>{{ $single['description'] }}</div>
-			<a href=" {{ route('showRestaurant', $single['id']) }} ">Read more...</a>
-		@endforeach
-		
+        <div class="container mt-5">
+            <div class="row">
+		        @foreach($restaurant['data'] as $single)
+                    
+                        <div class="col-md-4">
+                            <div class="card p-3">
+                                <div class="d-flex flex-row mb-3"><img src="https://i.imgur.com/ccMhxvC.png" width="70">
+                                    <div class="d-flex flex-column ml-2"><span>{{ $single['name'] }}</span><span class="text-black-50">Address</span><span class="ratings"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span></div>
+                                </div>
+                                <h6>{{ $single['description'] }}</h6>
+                                <div class="d-flex justify-content-between install mt-3"><span>foo-d-order-service</span><span class="text-primary"><a href=" {{ route('showRestaurant', $single['id']) }} ">Read more...</a><i class="fa fa-angle-right"></i></span></div>
+                            </div>
+                        </div>
+                    
+		        @endforeach
+            </div>
+	    </div>
+
+
 		
 @endsection
