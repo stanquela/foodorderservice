@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController; //Users Controller
 use App\Http\Controllers\RestaurantsController; //Restaurants Controller
 use App\Http\Controllers\MealsController; //Meals Controller
 use App\Http\Controllers\CartController; //Shopping cart controller
@@ -38,11 +39,21 @@ Route::get('/show-restaurant/{id}', [RestaurantsController::class, 'showRestaura
 
 /*ADMIN MIDDLEWARE*/
 Route::prefix('admin')->middleware(['auth','is.admin'])->group(function(){
+       //Restaurant manipulation - available only to admin.
         Route::get('/add-restaurant',[RestaurantsController::class,'addRestaurant'])->name('addRestaurant');
         Route::post('/save-restaurant',[RestaurantsController::class,'saveRestaurant'])->name('saveRestaurant');
         Route::get('/edit-restaurant/{id}', [RestaurantsController::class, 'editRestaurant'])->name('editRestaurant');
         Route::post('/save-edit-restaurant/{id}', [RestaurantsController::class, 'saveEditRestaurant'])->name('saveEditRestaurant');
         Route::delete('/delete-restaurant/{id}', [RestaurantsController::class, 'deleteRestaurant'])->name('deleteRestaurant');
+
+        //User manipulation - available only to admin. Adding a new meddleware - single restaurant admin can also be considered.
+        Route::get('/users', [UsersController::class,'listUsers'])->name('users');
+        Route::get('/add-user', [UsersController::class, 'addUser'])->name('addUser');
+        Route::post('/save-user',[UsersController::class, 'saveUser'])->name('saveUser');
+        Route::get('/edit-user/{id}', [UsersController::class, 'editUser'])->name('editUser');
+        Route::post('/save-edit-user',[UsersController::class, 'saveEditUser'])->name('saveEditUser');
+        Route::delete('/delete-user/{id}')->name('deleteUser');
+    
     });
 
 
@@ -62,29 +73,29 @@ Route::prefix('staff')->middleware(['auth','is.staff'])->group(function(){
 
 
 
-/*CLIENT MIDDLEWARE (ADMIN IS ALSO ABLE TO ACCESS, STAFF CAN'T USE THE CART AND ORDERS, EXCEPT WHEN THEY RECEIVE THE ORDER.)*/
+/*CLIENT MIDDLEWARE (ADMIN IS ALSO ABLE TO ACCESS, STAFF CAN'T USE THE CART, SINCE THERE'S NO NEED.)*/
 Route::prefix('staff')->middleware(['auth', 'is.client'])->group(function(){
         
         //Routes for cart        
         Route::get('/show-cart', [CartController::class,'showCart'])->name('showCart');
         Route::post('/add-to-cart/{id}', [CartController::class,'addToCart'])->name('addToCart');
         Route::delete('/delete-from-cart/{id}', [CartController::class,'deleteFromCart'])->name('deleteFromCart');
-
-
     });
 
 
 //THESE ROUTES STILL NEED TO BE PROCESSED.
 
-        //Routes for orders - what should STAFF see??? To be revised
+        //Routes for orders - logic inserted in OrdersController
+        //CLIENT can see only the orders they made (including ordered items)
+        //STAFF can see only orders that are related to the restaurant they're bond with
+        //ADMIN can access everything, ofc.
         Route::get('/orders',[OrdersController::class,'listOrders'])->name('orders');
         Route::post('/add-order',[OrdersController::class,'addOrder'])->name('addOrder');
         Route::post('/save-order',[OrdersController::class,'saveOrder'])->name('saveOrder');
         Route::get('/show-order/{id}', [OrdersController::class, 'showOrder'])->name('showOrder'); 
 
 /*Once the order is made, it can't be changed by client in the DB (for now)*/
-//Route::get('/edit-order/{id}', [OrdersController::class, 'editOrder'])->name('editOrder');
-//Route::post('/save-edit-order/{id}', [OrdersController::class, 'saveEditOrder'])->name('saveEditOrder');
+
 Route::delete('/delete-order/{id}', [OrdersController::class, 'deleteOrder'])->name('deleteOrder');
 Route::post('/confirm-order/{id}', [OrdersController::class, 'confirmOrder'])->name('confirmOrder');
 Route::post('/archive-order/{id}', [OrdersController::class, 'archiveOrder'])->name('archiveOrder');

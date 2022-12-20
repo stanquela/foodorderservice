@@ -54,6 +54,10 @@
 			              <li class="nav-item">
 				            <a class="nav-link" href="{{ route('about') }}">About</a>
 			              </li>
+
+                          <li class="nav-item active">
+				            <a class="nav-link" href="{{ route('users') }}">Users</a>
+			              </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
