@@ -58,6 +58,10 @@
                           <li class="nav-item active">
 				            <a class="nav-link" href="{{ route('users') }}">Users</a>
 			              </li>
+
+                          <li class="nav-item active">
+				            <a class="nav-link" href="{{ route('addUser') }}">Add user</a>
+			              </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

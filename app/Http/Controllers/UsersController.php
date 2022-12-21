@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Session;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -14,33 +17,38 @@ class UsersController extends Controller
         return view('user/users', compact('user'));
     }
 
-	//Add a restaurant to the DB. ADMIN ONLY.
-	/*public function addRestaurant(){
-		return view('restaurant/add_restaurant');
-	}*/
+	//Add a user to the DB. ADMIN ONLY.
+	public function addUser(){
+		return view('user/add_user');
+	}
 
-	//Save added restaurant to the DB. ADMIN ONLY.
-	/*public function saveRestaurant(Request $request){
+	//Save added user to the DB. ADMIN ONLY.
+	public function saveUser(Request $request){
 
-		$name = $request['name'];
-		$description = $request['description'];
-		$address = $request['address'];
+        $name = $request['name'];
 		$email = $request['email'];
 		$phone = $request['phone'];
+        $address = $request['address'];
+        $restaurant_id = $request['restaurant_id'];
+        $role = $request['role'];
+        $password = $request['password'];
 
-		$restaurant = new Restaurant();
 
-		$restaurant->name = $name;
-		$restaurant->description = $description;
-		$restaurant->address = $address;
-		$restaurant->email = $email;
-		$restaurant->phone = $phone;
+		$user = new User();
 
-		$restaurant->save();
+		$user->name = $name;
+		$user->email = $email;
+        $user->phone = $phone;
+		$user->address = $address;
+		$user->restaurant_id = $restaurant_id;
+        $user->role = $role;
+        $user->password = Hash::make($password);		
+
+		$user->save();
 		
-		Session::flash("message", "Congrats, successfully added a new restaurant!");
+		Session::flash("message", "Congrats, successfully added a new user!");
 		return redirect()->back();
-	}*/
+	}
 
 	//Display a single restaurant page.
 	/*public function showRestaurant($id){
@@ -49,43 +57,47 @@ class UsersController extends Controller
 		return view('restaurant/single_restaurant')->with('data', $data)->with('meals', $meals);
 	}*/
 
-	//Edit data of a restaurant in DB. ADMIN ONLY.
-	/*public function editRestaurant($id){
-		$data = Restaurant::find($id);
+	//Edit data of a user in DB. ADMIN ONLY.
+	public function editUser($id){
+		$data = User::find($id);
 
-		return view('restaurant/edit_restaurant')->with('data', $data);
-	}*/
+		return view('user/edit_user')->with('data', $data);
+	}
 
-	//Save edited data of a restaurant in DB. ADMIN ONLY.
-	/*public function saveEditRestaurant($id, Request $request){
+	//Save edited data of a user in DB. ADMIN ONLY.
+	public function saveEditUser($id, Request $request){
 
-		$name = $request['name'];
-		$description = $request['description'];
-		$address = $request['address'];
+        $name = $request['name'];
 		$email = $request['email'];
 		$phone = $request['phone'];
+        $address = $request['address'];
+        $restaurant_id = $request['restaurant_id'];
+        $role = $request['role'];
+        $password = $request['password'];
 
-		$restaurant = Restaurant::find($id);
+		$user = User::find($id);
 
-		$restaurant->name = $name;
-		$restaurant->description = $description;
-		$restaurant->address = $address;
-		$restaurant->email = $email;
-		$restaurant->phone = $phone;
+        $user->name = $name;
+		$user->email = $email;
+        $user->phone = $phone;
+		$user->address = $address;
+		$user->restaurant_id = $restaurant_id;
+        $user->role = $role;
+        $user->password = Hash::make($password);
 
-		$restaurant->save();
+		$user->save();
 		
-		Session::flash("message", "Congrats, successfully edited a restaurant!");
+		Session::flash("message", "Congrats, successfully edited user info!");
 		return redirect()->back();
-	}*/
+	}
 
 	//Delete a restaurant from the DB. ADMIN ONLY.
-	/*public function deleteRestaurant($id){
-		$data = Restaurant::find($id);
+	public function deleteUser($id){
+		$data = User::find($id);
 		$data->delete();
 
-		Session::flash('message', 'You just deleted a restaurant from the DB!');
-		return redirect()->route('restaurants');
-	}*/
+		Session::flash('message', 'You just deleted a user from the DB!');
+		return redirect()->route('users');
+	}
 
 }

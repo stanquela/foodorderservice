@@ -51,8 +51,8 @@ Route::prefix('admin')->middleware(['auth','is.admin'])->group(function(){
         Route::get('/add-user', [UsersController::class, 'addUser'])->name('addUser');
         Route::post('/save-user',[UsersController::class, 'saveUser'])->name('saveUser');
         Route::get('/edit-user/{id}', [UsersController::class, 'editUser'])->name('editUser');
-        Route::post('/save-edit-user',[UsersController::class, 'saveEditUser'])->name('saveEditUser');
-        Route::delete('/delete-user/{id}')->name('deleteUser');
+        Route::post('/save-edit-user/{id}',[UsersController::class, 'saveEditUser'])->name('saveEditUser');
+        Route::delete('/delete-user/{id}',[UsersController::class, 'deleteUser'])->name('deleteUser');
     
     });
 
